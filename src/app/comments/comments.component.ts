@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnChanges, OnInit } from '@angular/core';
 
@@ -8,11 +8,15 @@ import { OnChanges, OnInit } from '@angular/core';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
 })
-export class CommentsComponent implements OnInit{
+export class CommentsComponent implements OnChanges{
   data: any;
+  update: boolean = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    this.refreshData();
+  }
+  ngOnChanges(){
     this.refreshData();
   }
 
@@ -22,7 +26,17 @@ export class CommentsComponent implements OnInit{
     });
   }
   delete(commentId: number){
-    this.http.delete(`http://localhost:3000/comments/${commentId}`).subscribe();
+    this.http.delete(`http://localhost:3000/comments/${commentId}`).subscribe(() => {
     this.refreshData();
-  }
+  }, error => {
+    console.log(error);
+  });
+}
+updateMode(){
+  if(this.update === false){
+  this.update = true;
+} else{
+  this.update = false;
+}
+}
 }

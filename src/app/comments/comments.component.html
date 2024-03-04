@@ -1,8 +1,11 @@
 <h1>Comments</h1>
 <ng-container *ngFor="let item of data">
-  <h3>{{item.writer}}</h3>
-  <p>{{item.text}}</p>
+  <h3>{{ item.id }}. {{ item.writer }}</h3>
+  <p>{{ item.text }}</p>
+  <button (click)="updateMode()">Update comment</button>
   <button (click)="delete(item.id)">Delete comment</button>
+  <div class="update" *ngIf="update === true">
+    <input type="text" [(ngModel)]="item.text" />
+  </div>
 </ng-container>
-
 <!-- {{data | json}} -->
