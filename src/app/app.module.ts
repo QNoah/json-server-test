@@ -6,12 +6,14 @@ import { CommentsComponent } from './comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentAddComponent } from './comment-add/comment-add.component';
 import { FormsModule } from '@angular/forms';
+import { CommentSucceedComponent } from './comment-succeed/comment-succeed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentsComponent,
-    CommentAddComponent
+    CommentAddComponent,
+    CommentSucceedComponent
   ],
   imports: [
     BrowserModule,

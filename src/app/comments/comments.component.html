@@ -2,6 +2,7 @@
 <ng-container *ngFor="let item of data">
   <h3>{{item.writer}}</h3>
   <p>{{item.text}}</p>
+  <button (click)="delete(item.id)">Delete comment</button>
 </ng-container>
 
 <!-- {{data | json}} -->

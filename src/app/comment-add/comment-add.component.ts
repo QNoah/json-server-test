@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment-add',
@@ -10,7 +11,7 @@ export class CommentAddComponent {
   writer: string;
   text: string;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   submitComment() {
     const data = {
@@ -19,6 +20,7 @@ export class CommentAddComponent {
     };
     this.dataService.postComment(data).subscribe(response => {
       console.log('Response from server:', response);
+      this.router.navigate(['success'])
       // Hier kun je eventuele verdere acties uitvoeren na het ontvangen van een antwoord
     },error => {
       console.error('Error submitting comment:', error);
