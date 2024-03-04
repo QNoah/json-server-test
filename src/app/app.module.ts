@@ -4,11 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentsComponent } from './comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CommentAddComponent } from './comment-add/comment-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentAddComponent
   ],
   imports: [
     BrowserModule,
