@@ -4,10 +4,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent {
   data: any;
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
+  ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
+    this.http.get('http://localhost:3000/comments').subscribe((data) => {
+      this.data = data;
+    });
+  }
 }

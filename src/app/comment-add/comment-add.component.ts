@@ -8,14 +8,14 @@ import { DataService } from '../data.service';
 })
 export class CommentAddComponent {
   writer: string;
-  comment: string;
+  text: string;
 
   constructor(private dataService: DataService) {}
 
   submitComment() {
     const data = {
       writer: this.writer,
-      comment: this.comment
+      text: this.text
     };
     this.dataService.postComment(data).subscribe(response => {
       console.log('Response from server:', response);
