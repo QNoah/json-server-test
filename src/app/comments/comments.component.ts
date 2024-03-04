@@ -10,6 +10,7 @@ import { OnChanges, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnChanges{
   data: any;
+  updateSuccess = false;
   update: boolean = false;
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -20,6 +21,13 @@ export class CommentsComponent implements OnChanges{
     this.refreshData();
   }
 
+  updateMode(){
+    if(this.update === false){
+    this.update = true;
+  } else{
+    this.update = false;
+  }
+}
   refreshData() {
     this.http.get('http://localhost:3000/comments').subscribe((data) => {
       this.data = data;
@@ -32,11 +40,17 @@ export class CommentsComponent implements OnChanges{
     console.log(error);
   });
 }
-updateMode(){
-  if(this.update === false){
-  this.update = true;
-} else{
-  this.update = false;
+
+updateComment(commentId: number, updatedText: string) {
+  const existingComment = this.data.find((comment: any) => comment.id === commentId);
+  const updatedComment = { ...existingComment, text: updatedText }; // Update 'text' field while keeping other fields intact
+  this.http.put(`http://localhost:3000/comments/${commentId}`, updatedComment).subscribe(() => {
+    // this.refreshData();
+    this.updateSuccess = true;
+    this.update = false;
+  }, error => {
+    console.error('Error updating comment:', error);
+  });
 }
-}
+
 }

@@ -4,8 +4,10 @@
   <p>{{ item.text }}</p>
   <button (click)="updateMode()">Update comment</button>
   <button (click)="delete(item.id)">Delete comment</button>
+  <div class="success" *ngIf="updateSuccess === true">Updated!</div>
   <div class="update" *ngIf="update === true">
-    <input type="text" [(ngModel)]="item.text" />
+    <textarea [(ngModel)]="item.text"></textarea>
+    <button (click)="updateComment(item.id, item.text)">Save</button>
   </div>
 </ng-container>
 <!-- {{data | json}} -->
