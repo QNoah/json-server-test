@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CommentsComponent } from './comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentAddComponent } from './comment-add/comment-add.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CommentAddComponent } from './comment-add/comment-add.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

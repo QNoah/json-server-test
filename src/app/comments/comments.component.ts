@@ -8,9 +8,6 @@ import { Component } from '@angular/core';
 })
 export class CommentsComponent {
   data: any;
-  constructor(private http: HttpClient){
-    this.http.get('http://localhost:3000/comments').subscribe((data) => {
-    this.data = data;
-    });
-  }
+  constructor(private http: HttpClient){}
+
 }

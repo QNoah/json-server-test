@@ -1,1 +1,6 @@
-<p>comment-add works!</p>
+<h1>Hi there! Add your comment.</h1>
+<form (ngSubmit)="submitComment()">
+    <input type="text" placeholder="Your name" name="writer" [(ngModel)]="writer">
+    <textarea name="comment" cols="30" rows="10" placeholder="Write your comment" [(ngModel)]="comment"></textarea>
+    <button type="submit">Submit</button>
+</form>
