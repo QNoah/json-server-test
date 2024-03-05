@@ -32,6 +32,15 @@ export class CommentsComponent implements OnChanges{
   refreshData() {
       this.data = this.commentService.getAllComments();
   }
+  updateComment(commentId: number, updatedText: string, writer: string){
+    this.commentService.updateComment(commentId, updatedText, writer).subscribe(() => {
+      this.refreshData();
+      this.updateSuccess = !this.updateSuccess;
+      this.update = !this.update;
+    }, error => {
+      console.log(error);
+    });
+  }
 //   delete(commentId: number){
 //     this.http.delete(`http://localhost:3000/comments/${commentId}`).subscribe(() => {
 //     this.refreshData();

@@ -12,4 +12,8 @@ export class CommentsService {
   getAllComments(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:3000/comments');
   }
+  updateComment(commentId: number, updatedText: string, writer: string): Observable<any[]> {
+    const updatedComment = { text: updatedText, writer: writer };
+    return this.http.put<any[]>(`http://localhost:3000/comments/${commentId}`, updatedComment);
+  }
 }
