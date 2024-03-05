@@ -1,14 +1,28 @@
-<h1>Comments</h1>
+<!-- <h1>Comments</h1>
 <h3 *ngIf="updateSuccess === true">Updated!</h3>
-<ng-container *ngFor="let item of data">
-  <h3>{{ item.id }}. {{ item.writer }}</h3>
-  <p>{{ item.text }}</p>
-  <button (click)="updateMode()">Update comment</button>
-  <button (click)="delete(item.id)">Delete comment</button>
-  <div class="update" *ngIf="update === true">
-    <textarea [(ngModel)]="item.text"></textarea>
-    <button (click)="updateComment(item.id, item.text)">Save</button>
-  </div>
+<ng-container *ngIf="singleData === true">
+  <ng-container *ngFor="let item of data">
+    <h3>{{ item.id }}. {{ item.writer }}</h3>
+    <p (click)="showAll(item.id)">{{ item.text }}</p>
+    <a (click)="updateMode()">Update</a>
+    <a (click)="delete(item.id)">Delete</a>
+    <div class="update" *ngIf="update === true">
+      <textarea [(ngModel)]="item.text"></textarea>
+      <button (click)="updateComment(item.id, item.text)">Save</button>
+    </div>
+  </ng-container>
 </ng-container>
-
-<!-- {{data | json}} -->
+<ng-container *ngFor="let item of data">
+    <ng-container *ngIf="item.id === bigId">
+        <h3>{{item.id}}. {{item.writer}}</h3>
+        <p>{{item.text}}</p>
+    </ng-container>
+</ng-container>
+{{data}} -->
+<div class="test" *ngIf="data | async as comments;">
+  <div *ngFor="let comment of comments">
+    <h3>{{comment.id}}. {{comment.writer}}</h3>
+    <p>Message:</p>
+    <p>{{comment.text}}</p>
+  </div>
+</div>
